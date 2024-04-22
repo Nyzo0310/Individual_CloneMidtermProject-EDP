@@ -58,7 +58,7 @@ if (isset($_SESSION['success_message']) && $_SESSION['success_message'] === true
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./assets/img/logo.png">
+    <link rel="icon" href="./assets/img/Tcc_logo.png">
     <title>TCC - Registration</title>
     <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
