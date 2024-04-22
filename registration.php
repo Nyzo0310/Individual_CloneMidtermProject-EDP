@@ -176,10 +176,64 @@ if (isset($_SESSION['success_message']) && $_SESSION['success_message'] === true
                                     </div>
                                     <div class="col-md-3">
                                         <label>Status : <small>(Optional)</small></label>
-                                        <input name="inp_status" type="text" placeholder="Enter the student status here.." class="form-control mt-2" value="<?php echo $inp_status; ?>">
+                                        <input name="inp_status" type="text"  placeholder="Enter the student status here.." class="form-control mt-2" value="<?php echo $inp_status; ?>">
                                     </div>
                                 </div>
-                            </div>
+                                <!--Address-->
+                                <?php
+                                    include './config/database.php';
+
+                                    
+                                ?>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                    <label>Region : <b class="text-danger">*</b></label>
+                                        <select name="inp_region" id="inp_region" onchange="display_province(this.value)" required class="form-control mt-2">
+                                            <option value="" disabled selected>-- SELECT REGION --</option>
+
+                                            <?php
+                                              $sql = "SELECT * FROM ph_region";
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                            while($row = $result->fetch_assoc()) {
+                                                ?>
+                                                 <option value="<?= $row['regCode'] ?>"><?= $row['regDesc']?></option> 
+                                                <?php
+                                            }
+                                            } else {
+                                            echo "0 results";
+                                            }
+                                            $conn->close();  
+                                            ?>
+                                        </select>   
+                                    </div>
+                                    <!--Provice-->
+                                    <div class="col-md-12 mt-3">
+                                    <label>Province : <b class="text-danger">*</b></label>
+                                        <select name="inp_province" id="inp_province" onchange="display_citymun(this.value)" required class="form-control mt-2">
+                                            <option value="" disabled selected>-- SELECT PROVINCE --</option>
+                                        </select>
+                                    </div>
+                                    <!--City / Municipality-->
+                                    <div class="col-md-12 mt-3">
+                                    <label>City / Municipality : <b class="text-danger">*</b></label>
+                                        <select name="inp_citymun" id="inp_citymun" onchange="display_brgy(this.value)" required class="form-control mt-2">
+                                            <option value="" disabled selected>-- SELECT CITY / MUNICIPALITY --</option>
+                                        </select>
+                                    </div>
+                                    <!--Barangay-->
+                                    <div class="col-md-12 mt-3">
+                                    <label>Barangay : <b class="text-danger">*</b></label>
+                                        <select name="inp_brgy" id="inp_brgy" required class="form-control mt-2">
+                                            <option value="" disabled selected>-- SELECT BARANGAY --</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
                             <div class="card-footer d-flex justify-content-end">
                                 <button type="submit" class="btn btn-success">Add New Student</button>
                             </div>
@@ -191,36 +245,56 @@ if (isset($_SESSION['success_message']) && $_SESSION['success_message'] === true
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const registrationForm = document.getElementById('registrationForm');
-        const successDiv = document.getElementById('successDiv');
-        const errorDiv = document.getElementById('errorDiv');
-
-        // Function to hide success and error messages
-        function hideMessages() {
-            if (successDiv) successDiv.style.display = 'none';
-            if (errorDiv) errorDiv.style.display = 'none';
+        function display_province(regCode) {
+            $.ajax({
+            url: './models/ph_address.php',
+            type: 'POST',
+            data: {
+                'type': 'region',
+                'post_code': regCode
+            },
+            success: function(response) {
+                $('#inp_province').html(response);
+            }
+        });
+    
         }
 
-        // Hide success and error messages when user starts typing
-        registrationForm.addEventListener('input', hideMessages);
-
-        // Function to clear input fields
-        function clearFields() {
-            const inputFields = registrationForm.querySelectorAll('input');
-            inputFields.forEach(field => field.value = '');
-            const selectField = registrationForm.querySelector('select');
-            if (selectField) selectField.value = '';
+        function display_citymun(provCode) {
+            $.ajax({
+            url: './models/ph_address.php',
+            type: 'POST',
+            data: {
+                'type': 'province',
+                'post_code': provCode
+            },
+            success: function(response) {
+                $('#inp_citymun').html(response);
+            }
+        });
+    
         }
 
-        // Clear input fields when success message appears
-        if (successDiv && successDiv.style.display !== 'none') {
-            clearFields();
+        function display_brgy(citymunCode) {
+            $.ajax({
+            url: './models/ph_address.php',
+            type: 'POST',
+            data: {
+                'type': 'citymun',
+                'post_code': citymunCode
+            },
+            success: function(response) {
+                $('#inp_brgy').html(response);
+            }
+        });
+    
         }
-    });
-</script>
+
+    </script>
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./assets/js/registration.js"> </script>    
 
 </body>
 </html>
