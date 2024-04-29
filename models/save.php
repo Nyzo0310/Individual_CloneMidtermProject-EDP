@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<hr>';
     } else {
 
-        header('location: /Individual_System_Project_EDP/registration.php?invalid');
+        header('location:   /Individual_System_Project_EDP/registration.php?invalid');
         exit();
     }
 } else {

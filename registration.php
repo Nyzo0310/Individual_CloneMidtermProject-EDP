@@ -179,6 +179,7 @@ if (isset($_SESSION['success_message']) && $_SESSION['success_message'] === true
                                         <input name="inp_status" type="text"  placeholder="Enter the student status here.." class="form-control mt-2" value="<?php echo $inp_status; ?>">
                                     </div>
                                 </div>
+                                
                                 <!--Address-->
                                 <?php
                                     include './config/database.php';
@@ -190,7 +191,7 @@ if (isset($_SESSION['success_message']) && $_SESSION['success_message'] === true
                                         <hr>
                                     </div>
                                     <div class="col-md-12 mt-3">
-                                    <label>Region : <b class="text-danger">*</b></label>
+                                    <label>Region : <b class="text-danger">*</b></label>A
                                         <select name="inp_region" id="inp_region" onchange="display_province(this.value)" required class="form-control mt-2">
                                             <option value="" disabled selected>-- SELECT REGION --</option>
 
