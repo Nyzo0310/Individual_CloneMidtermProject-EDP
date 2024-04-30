@@ -24,4 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (successDiv && successDiv.style.display !== 'none') {
         clearFields();
     }
+
+    // Hide success and error messages when user selects a location
+    const selectElements = registrationForm.querySelectorAll('select');
+    selectElements.forEach(selectElement => {
+        selectElement.addEventListener('change', hideMessages);
+    });
 });

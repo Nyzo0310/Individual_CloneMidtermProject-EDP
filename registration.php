@@ -93,6 +93,9 @@ if (isset($_SESSION['success_message']) && $_SESSION['success_message'] === true
                     <li class="nav-item">
                         <a class="nav-link" href="./registration.php">Registration</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="postalCode.php">Postal</a>
+                    </li> 
                 </ul>
             </div>
         </div>
@@ -191,7 +194,7 @@ if (isset($_SESSION['success_message']) && $_SESSION['success_message'] === true
                                         <hr>
                                     </div>
                                     <div class="col-md-12 mt-3">
-                                    <label>Region : <b class="text-danger">*</b></label>A
+                                    <label>Region : <b class="text-danger">*</b></label>
                                         <select name="inp_region" id="inp_region" onchange="display_province(this.value)" required class="form-control mt-2">
                                             <option value="" disabled selected>-- SELECT REGION --</option>
 

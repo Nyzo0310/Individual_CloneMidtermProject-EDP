@@ -41,6 +41,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./registration.php">Registration</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="postalCode.php">Postal</a>
+                    </li> 
                 </ul>
                 <form class="d-flex">
                     <!-- Ensure search function is defined in a separate script -->

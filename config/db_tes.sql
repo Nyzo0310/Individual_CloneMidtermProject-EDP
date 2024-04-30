@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Mar 14, 2024 at 02:33 AM
--- Server version: 8.0.31
--- PHP Version: 8.0.26
+-- Host: 127.0.0.1
+-- Generation Time: Apr 30, 2024 at 11:20 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,16 +27,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `ph_brgy`
 --
 
-DROP TABLE IF EXISTS `ph_brgy`;
-CREATE TABLE IF NOT EXISTS `ph_brgy` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ph_brgy` (
+  `id` int(11) NOT NULL,
   `brgyCode` varchar(255) DEFAULT NULL,
-  `brgyDesc` text,
+  `brgyDesc` text DEFAULT NULL,
   `regCode` varchar(255) DEFAULT NULL,
   `provCode` varchar(255) DEFAULT NULL,
-  `citymunCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=42030 DEFAULT CHARSET=utf8mb3;
+  `citymunCode` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ph_brgy`
@@ -42127,16 +42125,14 @@ INSERT INTO `ph_brgy` (`id`, `brgyCode`, `brgyDesc`, `regCode`, `provCode`, `cit
 -- Table structure for table `ph_citymun`
 --
 
-DROP TABLE IF EXISTS `ph_citymun`;
-CREATE TABLE IF NOT EXISTS `ph_citymun` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ph_citymun` (
+  `id` int(11) NOT NULL,
   `psgcCode` varchar(255) DEFAULT NULL,
-  `citymunDesc` text,
+  `citymunDesc` text DEFAULT NULL,
   `regDesc` varchar(255) DEFAULT NULL,
   `provCode` varchar(255) DEFAULT NULL,
-  `citymunCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1648 DEFAULT CHARSET=utf8mb3;
+  `citymunCode` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ph_citymun`
@@ -43795,18 +43791,163 @@ INSERT INTO `ph_citymun` (`id`, `psgcCode`, `citymunDesc`, `regDesc`, `provCode`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ph_postalcode`
+--
+
+CREATE TABLE `ph_postalcode` (
+  `postal_id` int(11) NOT NULL,
+  `postal_regCode` int(15) NOT NULL,
+  `postal_provCode` int(15) NOT NULL,
+  `postal_citymunCode` int(15) NOT NULL,
+  `postal_code` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ph_postalcode`
+--
+
+INSERT INTO `ph_postalcode` (`postal_id`, `postal_regCode`, `postal_provCode`, `postal_citymunCode`, `postal_code`) VALUES
+(1, 13, 1339, 133901, 1012),
+(2, 13, 1339, 133902, 1006),
+(3, 13, 1339, 133903, 1001),
+(4, 13, 1339, 133904, 1010),
+(5, 13, 1339, 133905, 1205),
+(6, 13, 1339, 133906, 1630),
+(7, 13, 1339, 133907, 1005),
+(8, 13, 1339, 133908, 1000),
+(9, 13, 1339, 133909, 1002),
+(10, 13, 1339, 133910, 1004),
+(11, 13, 1339, 133911, 1007),
+(12, 13, 1339, 133912, 1011),
+(13, 13, 1339, 133913, 1018),
+(14, 13, 1339, 133914, 1012),
+(15, 13, 1374, 137401, 1553),
+(16, 13, 1374, 137402, 1800),
+(17, 13, 1374, 137403, 1608),
+(18, 13, 1374, 137404, 1103),
+(19, 13, 1374, 137405, 1603),
+(20, 13, 1375, 137501, 1408),
+(21, 13, 1375, 137502, 1470),
+(22, 13, 1375, 137503, 1485),
+(23, 13, 1375, 137504, 1442),
+(24, 13, 1376, 137601, 1750),
+(25, 13, 1376, 137602, 1219),
+(26, 13, 1376, 137603, 1799),
+(27, 13, 1376, 137604, 1700),
+(28, 13, 1376, 137605, 1309),
+(29, 13, 1376, 137606, 1621),
+(30, 13, 1376, 137607, 1637),
+(31, 6, 604, 60401, 5616),
+(32, 6, 604, 60402, 5614),
+(33, 6, 604, 60403, 5601),
+(34, 6, 604, 60404, 5615),
+(35, 6, 604, 60405, 5609),
+(36, 6, 604, 60406, 5613),
+(37, 6, 604, 60407, 5600),
+(38, 6, 604, 60408, 5605),
+(39, 6, 604, 60409, 5602),
+(40, 6, 604, 60410, 5603),
+(41, 6, 604, 60411, 5611),
+(42, 6, 604, 60412, 5608),
+(43, 6, 604, 60413, 5606),
+(44, 6, 604, 60414, 5607),
+(45, 6, 604, 60415, 5610),
+(46, 6, 604, 60416, 5604),
+(47, 6, 604, 60417, 5612),
+(48, 6, 606, 60601, 5717),
+(49, 6, 606, 60602, 5706),
+(50, 6, 606, 60603, 5701),
+(51, 6, 606, 60604, 5704),
+(52, 6, 606, 60605, 5711),
+(53, 6, 606, 60606, 5708),
+(54, 6, 606, 60607, 5716),
+(55, 6, 606, 60608, 5715),
+(56, 6, 606, 60609, 5705),
+(57, 6, 606, 60610, 5710),
+(58, 6, 606, 60611, 5712),
+(59, 6, 606, 60612, 5702),
+(60, 6, 606, 60613, 5700),
+(61, 6, 606, 60614, 5714),
+(62, 6, 606, 60615, 5709),
+(63, 6, 606, 60616, 5713),
+(64, 6, 606, 60617, 5707),
+(65, 6, 606, 60618, 5703),
+(66, 6, 619, 61901, 5811),
+(67, 6, 619, 61902, 5810),
+(68, 6, 619, 61903, 5813),
+(69, 6, 619, 61904, 5812),
+(70, 6, 619, 61905, 5805),
+(71, 6, 619, 61906, 5808),
+(72, 6, 619, 61907, 5809),
+(73, 6, 619, 61908, 5807),
+(74, 6, 619, 61909, 5801),
+(75, 6, 619, 61910, 5815),
+(76, 6, 619, 61911, 5804),
+(77, 6, 619, 61913, 5803),
+(78, 6, 619, 61912, 5802),
+(79, 6, 619, 61914, 5800),
+(80, 6, 619, 61915, 5806),
+(81, 6, 619, 61916, 5816),
+(82, 6, 619, 61917, 5814),
+(83, 6, 630, 63001, 5012),
+(84, 6, 630, 63002, 5028),
+(85, 6, 630, 63003, 5009),
+(86, 6, 630, 63004, 5033),
+(87, 6, 630, 63005, 5018),
+(88, 6, 630, 63006, 5010),
+(89, 6, 630, 63007, 5007),
+(90, 6, 630, 63008, 5011),
+(91, 6, 630, 63009, 5016),
+(92, 6, 630, 63010, 5041),
+(93, 6, 630, 63012, 5031),
+(94, 6, 630, 63013, 5040),
+(95, 6, 630, 63014, 5019),
+(96, 6, 630, 63015, 5013),
+(97, 6, 630, 63016, 5035),
+(98, 6, 630, 63017, 5038),
+(99, 6, 630, 63018, 5006),
+(100, 6, 630, 63019, 5017),
+(101, 6, 630, 63020, 5022),
+(102, 6, 630, 63021, 5029),
+(103, 6, 645, 64501, 6100),
+(104, 6, 645, 64502, 6101),
+(105, 6, 645, 64503, 6107),
+(106, 6, 645, 64504, 6121),
+(107, 6, 645, 64505, 6126),
+(108, 6, 645, 64506, 6110),
+(109, 6, 645, 64507, 6112),
+(110, 6, 645, 64508, 6118),
+(111, 6, 645, 64509, 6124),
+(112, 6, 645, 64510, 6108),
+(113, 6, 645, 64511, 6106),
+(114, 6, 645, 64512, 6114),
+(115, 6, 645, 64513, 6109),
+(116, 6, 645, 64514, 6128),
+(117, 6, 645, 64515, 6111),
+(118, 6, 645, 64516, 6130),
+(119, 6, 645, 64517, 6131),
+(120, 6, 645, 64518, 6120),
+(121, 6, 645, 64519, 6132),
+(122, 6, 645, 64520, 6129),
+(123, 6, 679, 67901, 5044),
+(124, 6, 679, 67902, 5045),
+(125, 6, 679, 67903, 5046),
+(126, 6, 679, 67904, 5047),
+(127, 6, 679, 67905, 5048);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `ph_province`
 --
 
-DROP TABLE IF EXISTS `ph_province`;
-CREATE TABLE IF NOT EXISTS `ph_province` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ph_province` (
+  `id` int(11) NOT NULL,
   `psgcCode` varchar(255) DEFAULT NULL,
-  `provDesc` text,
+  `provDesc` text DEFAULT NULL,
   `regCode` varchar(255) DEFAULT NULL,
-  `provCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb3;
+  `provCode` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ph_province`
@@ -43908,14 +44049,12 @@ INSERT INTO `ph_province` (`id`, `psgcCode`, `provDesc`, `regCode`, `provCode`) 
 -- Table structure for table `ph_region`
 --
 
-DROP TABLE IF EXISTS `ph_region`;
-CREATE TABLE IF NOT EXISTS `ph_region` (
-  `id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ph_region` (
+  `id` int(11) NOT NULL,
   `psgcCode` varchar(255) DEFAULT NULL,
-  `regDesc` text,
-  `regCode` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
+  `regDesc` text DEFAULT NULL,
+  `regCode` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `ph_region`
@@ -43946,20 +44085,18 @@ INSERT INTO `ph_region` (`id`, `psgcCode`, `regDesc`, `regCode`) VALUES
 -- Table structure for table `t_students`
 --
 
-DROP TABLE IF EXISTS `t_students`;
-CREATE TABLE IF NOT EXISTS `t_students` (
-  `s_app_id` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `s_tes_number` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `s_student_id` int NOT NULL,
-  `s_first_name` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
-  `s_last_name` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
-  `s_ext_name` varchar(5) COLLATE utf8mb4_general_ci NOT NULL,
-  `s_middle_name` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
-  `s_gender` varchar(6) COLLATE utf8mb4_general_ci NOT NULL,
-  `s_phone` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
-  `s_award_batch` int NOT NULL,
-  `s_status` varchar(25) COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`s_app_id`)
+CREATE TABLE `t_students` (
+  `s_app_id` varchar(50) NOT NULL,
+  `s_tes_number` varchar(50) NOT NULL,
+  `s_student_id` int(11) NOT NULL,
+  `s_first_name` varchar(60) NOT NULL,
+  `s_last_name` varchar(60) NOT NULL,
+  `s_ext_name` varchar(5) NOT NULL,
+  `s_middle_name` varchar(60) NOT NULL,
+  `s_gender` varchar(6) NOT NULL,
+  `s_phone` varchar(15) NOT NULL,
+  `s_award_batch` int(11) NOT NULL,
+  `s_status` varchar(25) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -43968,7 +44105,83 @@ CREATE TABLE IF NOT EXISTS `t_students` (
 
 INSERT INTO `t_students` (`s_app_id`, `s_tes_number`, `s_student_id`, `s_first_name`, `s_last_name`, `s_ext_name`, `s_middle_name`, `s_gender`, `s_phone`, `s_award_batch`, `s_status`) VALUES
 ('APP-0001234-987', 'TEST-0001234-987', 202412345, 'Kent Russell', 'Casiño', '', 'Nagac', 'Male', '09758117234', 13, 'Enrolled'),
-('APP-0001234-001', 'TEST-0001234-987', 1234, 'Maverick', 'Casiño', '', 'Nagac', 'Male', '09758117234', 13, 'Enrolled');
+('APP-0001234-001', 'TEST-0001234-987', 1234, 'Maverick', 'Casiño', '', 'Nagac', 'Male', '09758117234', 13, 'Enrolled'),
+('APP-0001234-0023333', 'TEST-0001234-9883', 2147483647, 'Earl', 'Sepida', '', 'Ramos', 'Male', '09569279299', 4, 'Enrolled'),
+('APP-0001234-002333', 'TEST-0001234-9883', 2147483647, 'Earl', 'Sepida', '', 'Ramos', 'Male', '09569279299', 1, 'Enrolled');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ph_brgy`
+--
+ALTER TABLE `ph_brgy`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ph_citymun`
+--
+ALTER TABLE `ph_citymun`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ph_postalcode`
+--
+ALTER TABLE `ph_postalcode`
+  ADD PRIMARY KEY (`postal_id`);
+
+--
+-- Indexes for table `ph_province`
+--
+ALTER TABLE `ph_province`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ph_region`
+--
+ALTER TABLE `ph_region`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_students`
+--
+ALTER TABLE `t_students`
+  ADD PRIMARY KEY (`s_app_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ph_brgy`
+--
+ALTER TABLE `ph_brgy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42030;
+
+--
+-- AUTO_INCREMENT for table `ph_citymun`
+--
+ALTER TABLE `ph_citymun`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1648;
+
+--
+-- AUTO_INCREMENT for table `ph_postalcode`
+--
+ALTER TABLE `ph_postalcode`
+  MODIFY `postal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+
+--
+-- AUTO_INCREMENT for table `ph_province`
+--
+ALTER TABLE `ph_province`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+
+--
+-- AUTO_INCREMENT for table `ph_region`
+--
+ALTER TABLE `ph_region`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
